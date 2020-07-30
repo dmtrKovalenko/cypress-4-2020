@@ -34,8 +34,8 @@ describe("Task 1 – DatePicker", () => {
       .should("exist");
   });
 
-  it("Allows to input date with only keyboard", () => {
-    cy.get("@datepicker").findByRole("textbox").clear().type("04/19/2010");
+  it.only("Allows to input date with only keyboard", () => {
+    cy.get("@datepicker").find("input").clear().type("04/19/2010");
     cy.get("@datepicker")
       .findByLabelText(/selected date is apr 19, 2010/i)
       .should("exist")
@@ -57,7 +57,7 @@ describe("Task 1 – DatePicker", () => {
       cy.executeInPicker().findByLabelText("Mar 9, 2020").should("be.focused");
     });
     it("Arrow right", () => {
-      cy.get("body").type("{leftarrow}");
+      cy.type("{leftarrow}");
       cy.executeInPicker().findByLabelText("Mar 7, 2020").should("be.focused");
     });
     it("Arrow down", () => {

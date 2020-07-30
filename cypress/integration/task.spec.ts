@@ -10,7 +10,7 @@ describe("Task 1 – DatePicker", () => {
       .findByLabelText(/Choose date/)
       .click();
 
-    cy.findByRole("dialog")
+    cy.executeInPicker()
       .findByLabelText("Jul 30, 2020")
       .should("be.focused")
       .should("have.attr", "tabindex", "0")
