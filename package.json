@@ -1,0 +1,14 @@
+{
+  "name": "cy-workshop",
+  "licence": "MIT",
+  "dependencies": {
+    "@testing-library/cypress": "^6.0.0",
+    "@types/testing-library__cypress": "^5.0.6",
+    "cypress": "^4.11.0",
+    "typescript": "^3.9.7"
+  },
+  "scripts": {
+    "test": "cypress open",
+    "test:run": "cypress run"
+  }
+}
