@@ -7,6 +7,7 @@ declare namespace Cypress {
      * @example cy.executeInDatePicker().findByText("2010")
      */
     executeInPicker: typeof import("./commands.js").executeInPicker;
+    executeInDatePicker: typeof import("./openDatePickerCommands").executeInDatePicker;
     // this 2 commands are identical, but openPicker is not implemented –> please implement it yourself
     openPicker: () => void;
     done_openPicker: () => void;
