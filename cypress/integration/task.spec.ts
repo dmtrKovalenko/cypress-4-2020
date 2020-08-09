@@ -1,5 +1,4 @@
 const dateInNextMonth = Cypress.moment().add(1, "month");
-const todaysDate = Cypress.moment();
 
 describe("Task 1 – DatePicker", () => {
   beforeEach(() => {
@@ -14,7 +13,7 @@ describe("Task 1 – DatePicker", () => {
       .click();
 
     cy.findByRole("dialog")
-      .findByLabelText(todaysDate.format("MMM D, YYYY"))
+      .findByLabelText(Cypress.moment().format("MMM D, YYYY"))
       .should("be.focused")
       .should("have.attr", "tabindex", "0")
       .should("have.class", "Mui-selected")
@@ -27,7 +26,7 @@ describe("Task 1 – DatePicker", () => {
       .click();
 
     cy.executeInPicker()
-      .findByLabelText(/next month/)
+      .findByLabelText(/next month/i)
       .click();
     cy.executeInPicker().contains(dateInNextMonth.format("D")).click();
 
@@ -62,18 +61,15 @@ describe("Task 1 – DatePicker", () => {
       cy.get("body").type("{leftarrow}{enter}");
       cy.get("[data-mui-test='datepicker-example'] input").should(
         "have.value",
-        todaysDate.add(-1, "day").format("MM/DD/YYYY")
+        Cypress.moment().add(-1, "day").format("MM/DD/YYYY")
       );
-      cy.log(todaysDate.format());
-      cy.log(todaysDate.add(-1, "day").format("MM/DD/YYYY"));
-      cy.log(dateInNextMonth.format());
     });
 
     it("Arrow right", () => {
       cy.get("body").type("{rightarrow}{enter}");
       cy.get("[data-mui-test='datepicker-example'] input").should(
         "have.value",
-        todaysDate.add(1, "day").format("MM/DD/YYYY")
+        Cypress.moment().add(1, "day").format("MM/DD/YYYY")
       );
     });
 
@@ -81,18 +77,16 @@ describe("Task 1 – DatePicker", () => {
       cy.get("body").type("{downarrow}{enter}");
       cy.get("[data-mui-test='datepicker-example'] input").should(
         "have.value",
-        todaysDate.add(1, "week").format("MM/DD/YYYY")
+        Cypress.moment().add(1, "week").format("MM/DD/YYYY")
       );
     });
 
     it("Arrow up", () => {
-      cy.get("body").type("{uparrow}");
-      cy.wait(300);
-      cy.get("body").type("{enter}");
+      cy.get("body").type("{uparrow}{enter}");
 
       cy.get("[data-mui-test='datepicker-example'] input").should(
         "have.value",
-        todaysDate.add(-1, "week").format("MM/DD/YYYY")
+        Cypress.moment().add(-1, "week").format("MM/DD/YYYY")
       );
     });
 
@@ -100,7 +94,7 @@ describe("Task 1 – DatePicker", () => {
       cy.get("body").type("{home}{enter}");
       cy.get("[data-mui-test='datepicker-example'] input").should(
         "have.value",
-        todaysDate.startOf("week").format("MM/DD/YYYY")
+        Cypress.moment().startOf("week").format("MM/DD/YYYY")
       );
     });
 
@@ -108,7 +102,7 @@ describe("Task 1 – DatePicker", () => {
       cy.get("body").type("{end}{enter}");
       cy.get("[data-mui-test='datepicker-example'] input").should(
         "have.value",
-        todaysDate.endOf("week").format("MM/DD/YYYY")
+        Cypress.moment().endOf("week").format("MM/DD/YYYY")
       );
     });
   });
